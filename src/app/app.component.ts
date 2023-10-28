@@ -29,9 +29,29 @@ export class AppComponent {
     //console.log(response);
     });
   }
-  
 
- 
- 
-}
+  updateUser(user: any) {
+    
+    this.http.put('http://localhost:8000/update/' + user.userId, user)
+      .subscribe((response) => {
+        // Handle the response from the server as needed
+        console.log(response);
+      });
+  }
+
+  deleteUser(user: any) {
+/*
+    this.http.delete('http://localhost:8000/deleteUser/' + user.userId)
+      .subscribe((response) => {
+        // Handle the response from the server as needed
+        console.log(response);
+
+        // Remove the user from this.userList locally
+        this.userList = this.userList.filter(userList => user.userId !== user.userId);
+      });
+  
+  */
+  }
+
+ }
  
