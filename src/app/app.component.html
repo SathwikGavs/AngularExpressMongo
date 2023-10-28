@@ -1,26 +1,37 @@
 <h1 style="background-color: aquamarine;">Angular Express</h1>
 <b>Enter user's data</b><br>
-<form #userData="ngForm" (ngSubmit) = 'addUser(userData)'>
+<form #userData="ngForm" (ngSubmit)='addUser(userData)'>
   User Id <input type="text" name="userId" ngModel/><br>
   Password <input type="text" name="password" ngModel/><br>
   Email Id <input type="email" name="emailId" ngModel/><br>
-  <input type="submit" value="Add User" />&nbsp;&nbsp;
+  <input type="submit" value="Add User"/>&nbsp;&nbsp;
   <input type="button" value="Get User" (click)="getAllUsers()"/>
 </form>
-<br><label>{{this.expresponse}}</label><br><br>
+<br><label>{{ this.expresponse }}</label><br><br>
 <h2>User Data</h2>
- 
+
 <table border="1">
   <tr>
     <th>User ID</th>
     <th>Password</th>
     <th>Email ID</th>
-   
+    <th>Actions</th> <!-- Add a new column for actions -->
   </tr>
   <tr *ngFor="let user of userList">
     <td>{{ user.userId }}</td>
     <td>{{ user.password }}</td>
     <td>{{ user.emailId }}</td>
+    <td>
+      <button (click)="updateUser(user)">Update</button> <!-- Update button -->
+      <button (click)="deleteUser(user)">Delete</button> <!-- Delete button -->
+    </td>
   </tr>
 </table>
-<router-outlet></router-outlet>
+
+
+
+
+
+
+
+
