@@ -30,28 +30,27 @@ export class AppComponent {
     });
   }
 
+   deleteUser(userId: string) {
+    if (confirm('Are you sure you want to delete this user?')) {
+      this.http.delete(`http://localhost:8000/delete`, { body: { uid: userId } }).subscribe((response) => {
+        console.log(response);
+        this.getAllUsers();
+      });
+    }
+  }
+ 
   updateUser(user: any) {
-    
-    this.http.put('http://localhost:8000/update/' + user.userId, user)
-      .subscribe((response) => {
-        // Handle the response from the server as needed
-        console.log(response);
-      });
-  }
-
-  deleteUser(user: any) {
-/*
-    this.http.delete('http://localhost:8000/deleteUser/' + user.userId)
-      .subscribe((response) => {
-        // Handle the response from the server as needed
-        console.log(response);
-
-        // Remove the user from this.userList locally
-        this.userList = this.userList.filter(userList => user.userId !== user.userId);
-      });
-  
-  */
-  }
+    const updatedUserData = {
+      userId: user.userId, // Use "userId"
+      password: user.password, // Include the updated data
+      emailId: user.emailId,
+    };
+ 
+    this.http.put('http://localhost:8000/update', updatedUserData).subscribe((response) => {
+      this.expresponse = response.toString();
+      this.getAllUsers(); // Optionally, you can update the user list after updating
+    });
+  }  
 
  }
  
